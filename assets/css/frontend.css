@@ -818,6 +818,9 @@
     text-shadow: 3px 2px 24px rgba(0, 0, 0, 0.5);
     -webkit-transition: all .5s;
     transition: all .5s; }
+.elementor-widget-video .wp-video {
+  margin: 0;
+  padding: 0; }
 
 .elementor-image-carousel-wrapper .slick-image-stretch .slick-slide .slick-slide-image {
   width: 100%; }

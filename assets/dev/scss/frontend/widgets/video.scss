@@ -63,4 +63,10 @@
 			transition: all .5s;
 		}
 	}
+
+	// Self Hosted (HTML5 Video)
+	.wp-video {
+		margin: 0; // Hack for front-end style themes
+		padding: 0; // Hack for front-end style themes
+	}
 }

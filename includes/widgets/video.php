@@ -34,7 +34,7 @@ class Widget_Video extends Widget_Base {
 				'options' => [
 					'youtube' => __( 'YouTube', 'elementor' ),
 					'vimeo' => __( 'Vimeo', 'elementor' ),
-					//'hosted' => __( 'HTML5 Video', 'elementor' ),
+					'hosted' => __( 'HTML5 Video', 'elementor' ),
 				],
 			]
 		);
@@ -97,7 +97,7 @@ class Widget_Video extends Widget_Base {
 		);
 
 		$this->add_control(
-			'heading_youtube',
+			'video_options',
 			[
 				'label' => __( 'Video Options', 'elementor' ),
 				'type' => Controls_Manager::HEADING,
@@ -264,61 +264,61 @@ class Widget_Video extends Widget_Base {
 		);
 
 		// Self Hosted
-		//$this->add_control(
-		//	'hosted_width',
-		//	[
-		//		'label' => __( 'Width', 'elementor' ),
-		//		'type' => Controls_Manager::NUMBER,
-		//		'default' => '640',
-		//		'condition' => [
-		//			'video_type' => 'hosted',
-		//		],
-		//	]
-		//);
-		//
-		//$this->add_control(
-		//	'hosted_height',
-		//	[
-		//		'label' => __( 'Height', 'elementor' ),
-		//		'type' => Controls_Manager::NUMBER,
-		//		'default' => '360',
-		//		'condition' => [
-		//			'video_type' => 'hosted',
-		//		],
-		//	]
-		//);
-		//
-		//$this->add_control(
-		//	'hosted_autoplay',
-		//	[
-		//		'label' => __( 'Autoplay', 'elementor' ),
-		//		'type' => Controls_Manager::SELECT,
-		//		'options' => [
-		//			'no' => __( 'No', 'elementor' ),
-		//			'yes' => __( 'Yes', 'elementor' ),
-		//		],
-		//		'default' => 'no',
-		//		'condition' => [
-		//			'video_type' => 'hosted',
-		//		],
-		//	]
-		//);
-		//
-		//$this->add_control(
-		//	'hosted_loop',
-		//	[
-		//		'label' => __( 'Loop', 'elementor' ),
-		//		'type' => Controls_Manager::SELECT,
-		//		'options' => [
-		//			'no' => __( 'No', 'elementor' ),
-		//			'yes' => __( 'Yes', 'elementor' ),
-		//		],
-		//		'default' => 'no',
-		//		'condition' => [
-		//			'video_type' => 'hosted',
-		//		],
-		//	]
-		//);
+		$this->add_control(
+			'hosted_width',
+			[
+				'label' => __( 'Width', 'elementor' ),
+				'type' => Controls_Manager::NUMBER,
+				'default' => '640',
+				'condition' => [
+					'video_type' => 'hosted',
+				],
+			]
+		);
+
+		$this->add_control(
+			'hosted_height',
+			[
+				'label' => __( 'Height', 'elementor' ),
+				'type' => Controls_Manager::NUMBER,
+				'default' => '360',
+				'condition' => [
+					'video_type' => 'hosted',
+				],
+			]
+		);
+
+		$this->add_control(
+			'hosted_autoplay',
+			[
+				'label' => __( 'Autoplay', 'elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'no' => __( 'No', 'elementor' ),
+					'yes' => __( 'Yes', 'elementor' ),
+				],
+				'default' => 'no',
+				'condition' => [
+					'video_type' => 'hosted',
+				],
+			]
+		);
+
+		$this->add_control(
+			'hosted_loop',
+			[
+				'label' => __( 'Loop', 'elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'no' => __( 'No', 'elementor' ),
+					'yes' => __( 'Yes', 'elementor' ),
+				],
+				'default' => 'no',
+				'condition' => [
+					'video_type' => 'hosted',
+				],
+			]
+		);
 
 		$this->add_control(
 			'view',
