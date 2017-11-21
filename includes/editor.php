@@ -553,7 +553,7 @@ class Editor {
 				'unknown_value' => __( 'Unknown Value', 'elementor' ),
 				'type_here' => __( 'Type Here', 'elementor' ),
 				'proceed_anyway' => __( 'Proceed Anyway', 'elementor' ),
-				'exit_to_dashboard' => __( 'Exit to Dashboard', '' ),
+				'exit_to_dashboard' => __( 'Exit to Dashboard', 'elementor' ),
 			],
 		];
 
