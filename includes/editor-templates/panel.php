@@ -78,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</span>
 	</div>
 	<div id="elementor-panel-saver-publish" class="elementor-panel-footer-tool">
-		<button id="elementor-panel-saver-button-publish" class="elementor-button elementor-save-active">
+		<button id="elementor-panel-saver-button-publish" class="elementor-button elementor-button-success">
 			<span class="elementor-state-icon">
 				<i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i>
 			</span>
@@ -93,17 +93,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span class="elementor-screen-only"><?php esc_html_e( 'Save Options', 'elementor' ); ?></span>
 		</button>
 		<div class="elementor-panel-footer-sub-menu-wrapper">
+            <p class="elementor-last-edited">Draft saved <time>1 min ago</time> by Ariel</p>
 			<div class="elementor-panel-footer-sub-menu">
 				<div id="elementor-panel-saver-menu-save-draft" class="elementor-panel-footer-sub-menu-item">
 					<i class="elementor-icon fa fa-save" aria-hidden="true"></i>
 					<span class="elementor-title"><?php esc_html_e( 'Save Draft & Exit', 'elementor' ); ?></span>
 				</div>
 				<div id="elementor-panel-saver-menu-discard" class="elementor-panel-footer-sub-menu-item">
-					<i class="elementor-icon fa fa-times" aria-hidden="true"></i>
+					<i class="elementor-icon fa fa-eraser" aria-hidden="true"></i>
 					<span class="elementor-title"><?php esc_html_e( 'Discard & Exit', 'elementor' ); ?></span>
 				</div>
 				<div id="elementor-panel-saver-menu-save-template" class="elementor-panel-footer-sub-menu-item">
-					<i class="elementor-icon fa fa-save" aria-hidden="true"></i>
+					<i class="elementor-icon fa fa-folder" aria-hidden="true"></i>
 					<span class="elementor-title"><?php esc_html_e( 'Save to Library', 'elementor' ); ?></span>
 				</div>
 			</div>

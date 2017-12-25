@@ -28,7 +28,7 @@
 
 	#elementor-panel-saver-button-update {
 		@include border-end(1px solid #2d8739);
-		border-radius: 3px 0 0 3px;
+		border-radius: getValueByDirection(3px 0 0 3px, 0 3px 3px 0);
 
 		i {
 			@include margin-end(5px);
@@ -37,8 +37,7 @@
 
 	#elementor-panel-saver-button-save-options {
 		float: $start;
-
-		border-radius: 0 3px 3px 0;
+		border-radius: getValueByDirection(0 3px 3px 0, 3px 0 0 3px);
 
 		i {
 			margin: auto;
@@ -136,10 +135,26 @@
 }
 
 #elementor-panel-saver-publish {
-	width: 70px;
+	width: 80px;
+	@extend .elementor-button-success;
 
-	.elementor-save-active {
-		@extend .elementor-button-success;
+	.elementor-button.elementor-button-state {
+
+		#elementor-panel-saver-button-publish-label {
+			display: none;
+		}
+	}
+}
+
+#elementor-panel-saver-save-options {
+	width: 35px;
+	@include border-start(1px solid $editor-darkest);
+
+	.elementor-last-edited {
+		font-size: 11px;
+		font-style: italic;
+		color: $editor-light;
+		padding: 5px 0 15px;
 	}
 }
 
@@ -150,7 +165,8 @@
 		}
 	}
 
-	&publish, &save-options {
+	&publish,
+	&save-options {
 		font-size: 11px;
 		text-transform: uppercase;
 		height: 26px;
@@ -158,21 +174,10 @@
 
 	&publish {
 		width: 100%;
-		background-color: $editor-darker;
-		color: $editor-light;
-		border-radius: 3px 0 0 3px;
-		i {
-			margin-right: 4px;
-		}
+		border-radius: getValueByDirection(3px 0 0 3px, 0 3px 3px 0);
 	},
 
 	&save-options {
-		width: 15px;
-		font-size: 9px;
-
+		width: 25px;
 	}
-}
-
-#elementor-panel-saver-save-options {
-	width: 23px;
 }
