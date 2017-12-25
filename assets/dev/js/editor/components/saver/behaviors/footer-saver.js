@@ -3,24 +3,20 @@ module.exports = Marionette.Behavior.extend( {
 
 	ui: function() {
 		return {
-			buttonUpdate: '#elementor-panel-saver-button-update',
 			buttonPreview: '#elementor-panel-saver-button-preview',
-			menuPublish: '#elementor-panel-saver-menu-publish',
-			menuUpdate: '#elementor-panel-saver-menu-update',
+			buttonPublish: '#elementor-panel-saver-button-publish',
+			buttonPublishLabel: '#elementor-panel-saver-button-publish-label',
 			menuDiscard: '#elementor-panel-saver-menu-discard',
-			menuSaveDraft: '#elementor-panel-saver-menu-save-draft',
-			menuSubmitForReview: '#elementor-panel-saver-menu-submit-for-review'
+			menuSaveDraft: '#elementor-panel-saver-menu-save-draft'
 		};
 	},
 
 	events: function() {
 		return {
 			'click @ui.buttonPreview': 'onClickButtonPreview',
-			'click @ui.menuPublish': 'onClickMenuPublish',
-			'click @ui.menuUpdate': 'onClickMenuUpdate',
+			'click @ui.buttonPublish': 'onClickButtonPublish',
 			'click @ui.menuSaveDraft': 'onClickMenuSaveDraft',
-			'click @ui.menuDiscard': 'onClickMenuDiscard',
-			'click @ui.menuSubmitForReview': 'onClickMenuSubmitForReview'
+			'click @ui.menuDiscard': 'onClickMenuDiscard'
 		};
 	},
 
@@ -28,8 +24,6 @@ module.exports = Marionette.Behavior.extend( {
 		elementor.saver
 			.on( 'before:save', this.onBeforeSave.bind( this ) )
 			.on( 'after:save', this.onAfterSave.bind( this ) )
-			.on( 'after:save:publish', this.onAfterPublish.bind( this ) )
-			.on( 'after:save:private', this.onAfterPublish.bind( this ) )
 			.on( 'after:saveError', this.onAfterSaveError.bind( this ) );
 
 		elementor.settings.document.model.on( 'change', this.onPostStatusChange.bind( this ) );
@@ -55,20 +49,17 @@ module.exports = Marionette.Behavior.extend( {
 		}
 	},
 
-	onBeforeSave: function() {
+	onBeforeSave: function( options ) {
 		NProgress.start();
-		this.ui.buttonUpdate.addClass( 'elementor-button-state' );
+		if ( 'autosave' !== options.status ) {
+			this.ui.buttonPublish.addClass( 'elementor-button-state' );
+		}
 	},
 
 	onAfterSave: function() {
 		NProgress.done();
-		this.ui.buttonUpdate.removeClass( 'elementor-button-state' );
+		this.ui.buttonPublish.removeClass( 'elementor-button-state' );
 		this.refreshWpPreview();
-	},
-
-	onAfterPublish: function() {
-		elementor.saver.setFlagEditorChange( false );
-		location.href = elementor.config.wp_preview.url;
 	},
 
 	onAfterSaveError: function() {
@@ -90,12 +81,23 @@ module.exports = Marionette.Behavior.extend( {
 		}
 	},
 
-	onClickMenuPublish: function() {
-		elementor.saver.publish();
-	},
-
-	onClickMenuUpdate: function() {
-		elementor.saver.update();
+	onClickButtonPublish: function() {
+		var postStatus = elementor.settings.document.model.get( 'post_status' );
+		switch ( postStatus ) {
+			case 'publish':
+			case 'private':
+				elementor.saver.update();
+				break;
+			case 'draft':
+			case 'pending': // User cannot change post status
+			case undefined: // TODO: as a contributor it's undefined instead of 'pending'.
+				if ( elementor.config.current_user_can_publish ) {
+					elementor.saver.publish();
+				} else {
+					elementor.saver.update();
+				}
+				break;
+		}
 	},
 
 	onClickMenuSaveDraft: function() {
@@ -110,38 +112,26 @@ module.exports = Marionette.Behavior.extend( {
 		elementor.saver.discard();
 	},
 
-	onClickMenuSubmitForReview: function() {
-		elementor.saver.savePending();
-	},
-
 	setMenuItems: function( postStatus ) {
-		this.ui.menuPublish.hide();
-		this.ui.menuUpdate.hide();
-		this.ui.menuSubmitForReview.hide();
+		var publishLabel = 'publish';
+		this.ui.menuDiscard.hide();
 
 		switch ( postStatus ) {
 			case 'publish':
-				this.ui.menuPublish.show();
-				this.ui.menuDiscard.show();
-				break;
 			case 'private':
-				this.ui.menuUpdate.show();
 				this.ui.menuDiscard.show();
+				publishLabel = 'update';
 				break;
 			case 'draft':
-				if ( elementor.config.current_user_can_publish ) {
-					this.ui.menuPublish.show();
-				}
-				break;
 			case 'pending': // User cannot change post status
 			case undefined: // TODO: as a contributor it's undefined instead of 'pending'.
-				if ( elementor.config.current_user_can_publish ) {
-					this.ui.menuPublish.show();
-				} else {
-					this.ui.menuSubmitForReview.show();
+				if ( ! elementor.config.current_user_can_publish ) {
+					publishLabel = 'update';
 				}
 				break;
 		}
+
+		this.ui.buttonPublishLabel.html( elementor.translate( publishLabel ) );
 	},
 
 	addTooltip: function() {

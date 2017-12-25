@@ -19,7 +19,7 @@ class Post extends Document {
 	}
 
 	public function get_css_wrapper_selector() {
-		return 'body.elementor-page-' . $this->get_id();
+		return 'body.elementor-page-' . $this->get_main_id();
 	}
 
 	public function save( $data ) {
@@ -92,7 +92,7 @@ class Post extends Document {
 				'default' => __( 'Default', 'elementor' ),
 			];
 
-			$options += array_flip( get_page_templates( null, $this->get_post_type_for_settings() ) );
+			$options += array_flip( get_page_templates( null, $this->get_main_post()->post_type ) );
 
 			$this->add_control(
 				'template',

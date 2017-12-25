@@ -44,22 +44,31 @@ abstract class Document extends Controls_Stack {
 		return $this->get_name() . '-' . $this->post->ID;
 	}
 
-	public function is_editable_by_current_user() {
+	public function get_main_id() {
 		$post_id = $this->post->ID;
 		$parent_post_id = wp_is_post_revision( $post_id );
 		if ( $parent_post_id ) {
 			$post_id = $parent_post_id;
 		}
 
-		return User::is_current_user_can_edit( $post_id );
+		return $post_id;
+	}
+
+	public function get_main_post() {
+		return get_post( $this->get_main_id() );
+	}
+
+	public function is_editable_by_current_user() {
+		return User::is_current_user_can_edit( $this->get_main_id() );
 	}
 
 	public function get_wp_preview_url() {
+		$main_post_id = $this->get_main_id();
 		$wp_preview_url = get_preview_post_link(
-			$this->post->ID,
+			$main_post_id,
 			[
-				'preview_id' => $this->post->ID,
-				'preview_nonce' => wp_create_nonce( 'post_preview_' . $this->post->ID ),
+				'preview_id' => $main_post_id,
+				'preview_nonce' => wp_create_nonce( 'post_preview_' . $main_post_id ),
 			]
 		);
 
@@ -75,7 +84,7 @@ abstract class Document extends Controls_Stack {
 	}
 
 	public function get_exit_to_dashboard_url() {
-		$exit_url = get_edit_post_link( $this->post->ID );
+		$exit_url = get_edit_post_link( $this->post->ID, '' );
 
 		/**
 		 * Filters the Exit To Dashboard URL.
@@ -144,7 +153,7 @@ abstract class Document extends Controls_Stack {
 				[
 					'label' => __( 'Status', 'elementor' ),
 					'type' => Controls_Manager::SELECT,
-					'default' => $this->get_post_status_for_settings(),
+					'default' => $this->get_main_post()->post_status,
 					'options' => get_post_statuses(),
 				]
 			);
@@ -370,15 +379,7 @@ abstract class Document extends Controls_Stack {
 		do_action( 'elementor/editor/after_save', $this->post->ID, $editor_data );
 	}
 
-	public function get_post_status_for_settings() {
-		return wp_is_post_revision( $this->post->ID ) ? get_post_status( $this->post->post_parent ) : $this->post->post_status;
-	}
-
-	public function get_post_type_for_settings() {
-		return wp_is_post_revision( $this->post->ID ) ? get_post_type( $this->post->post_parent ) : $this->post->post_type;
-	}
-
-	public function get_autosave_id( $user_id  = 0 ) {
+	public function get_autosave_id( $user_id = 0 ) {
 		$autosave = wp_get_post_autosave( $this->post->ID, $user_id );
 		if ( $autosave ) {
 			return $autosave->ID;
@@ -408,7 +409,7 @@ abstract class Document extends Controls_Stack {
 
 		$data['settings'] += [
 			'post_title' => $this->post->post_title,
-			'post_status' => $this->get_post_status_for_settings(),
+			'post_status' => $this->get_main_post()->post_status,
 		];
 
 		parent::__construct( $data );

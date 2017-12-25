@@ -35,7 +35,7 @@
 		}
 	}
 
-	#elementor-panel-saver-button-publish {
+	#elementor-panel-saver-button-save-options {
 		float: $start;
 
 		border-radius: 0 3px 3px 0;
@@ -135,12 +135,11 @@
 	color: $editor-lightest;
 }
 
-#elementor-panel-saver-save {
-	width: 85px;
-	@include padding-end( 10px );
+#elementor-panel-saver-publish {
+	width: 70px;
 
 	.elementor-save-active {
-
+		@extend .elementor-button-success;
 	}
 }
 
@@ -151,24 +150,29 @@
 		}
 	}
 
-	&update {
-		@extend .elementor-button-success;
+	&publish, &save-options {
 		font-size: 11px;
 		text-transform: uppercase;
 		height: 26px;
+	}
+
+	&publish {
 		width: 100%;
+		background-color: $editor-darker;
+		color: $editor-light;
+		border-radius: 3px 0 0 3px;
+		i {
+			margin-right: 4px;
+		}
+	},
+
+	&save-options {
+		width: 15px;
+		font-size: 9px;
+
 	}
 }
 
-#elementor-panel-saver-menu-publish {
-	.elementor-icon, .elementor-title {
-		color: $editor-success;
-	}
-}
-
-#elementor-panel-footer-discard {
-
-	.elementor-icon, .elementor-title {
-		color: $editor-warning;
-	}
+#elementor-panel-saver-save-options {
+	width: 23px;
 }

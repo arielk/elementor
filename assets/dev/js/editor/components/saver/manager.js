@@ -111,8 +111,8 @@ module.exports = Module.extend( {
 			elements = elementor.elements.toJSON( { removeDefault: true } ),
 			settings = elementor.settings.document.model.toJSON( { removeDefault: true } );
 
-		self.trigger( 'before:save' )
-			.trigger( 'before:save:' + options.status );
+		self.trigger( 'before:save', options )
+			.trigger( 'before:save:' + options.status, options );
 
 		self.isSaving = true;
 		self.isChangedDuringSave = false;

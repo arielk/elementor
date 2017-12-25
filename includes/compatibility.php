@@ -37,9 +37,9 @@ class Compatibility {
 			if ( function_exists( 'gutenberg_init' ) ) {
 				add_action( 'admin_print_scripts-edit.php', [ __CLASS__, 'add_new_button_to_gutenberg' ], 11 );
 				add_action( 'admin_action_elementor_new_post', [ __CLASS__, 'admin_new_post' ] );
-				add_filter( 'elementor/utils/exit_to_dashboard_url', [ __CLASS__, 'exit_to_classic_editor' ] );
+				add_filter( 'elementor/document/exit_to_dashboard_url', [ __CLASS__, 'exit_to_classic_editor' ] );
+			}
 		}
-	}
 	}
 
 	/**
