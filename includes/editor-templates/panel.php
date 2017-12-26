@@ -105,7 +105,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 				<div id="elementor-panel-saver-menu-save-template" class="elementor-panel-footer-sub-menu-item">
 					<i class="elementor-icon fa fa-folder" aria-hidden="true"></i>
-					<span class="elementor-title"><?php esc_html_e( 'Save to Library', 'elementor' ); ?></span>
+					<span class="elementor-title"><?php esc_html_e( 'Save as a Template', 'elementor' ); ?></span>
 				</div>
 			</div>
 		</div>
