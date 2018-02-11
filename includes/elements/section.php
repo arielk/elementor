@@ -336,7 +336,7 @@ class Element_Section extends Element_Base {
 				'options' => [
 					'default' => __( 'Default', 'elementor' ),
 					'full' => __( 'Fit To Screen', 'elementor' ),
-					'min-height' => __( 'Min Height', 'elementor' ),
+					'min-height' => __( 'Min. Height', 'elementor' ),
 				],
 				'prefix_class' => 'elementor-section-height-',
 				'hide_in_inner' => true,
@@ -380,7 +380,7 @@ class Element_Section extends Element_Base {
 				'default' => 'default',
 				'options' => [
 					'default' => __( 'Default', 'elementor' ),
-					'min-height' => __( 'Min Height', 'elementor' ),
+					'min-height' => __( 'Min. Height', 'elementor' ),
 				],
 				'prefix_class' => 'elementor-section-height-',
 				'hide_in_top' => true,
