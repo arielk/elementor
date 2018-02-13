@@ -919,9 +919,9 @@ select {
       font-size: 19px;
       height: 40px;
       line-height: 40px;
-      -webkit-transition: all 0.5s;
-      -o-transition: all 0.5s;
-      transition: all 0.5s; }
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s; }
       .elementor-panel .elementor-header-button .elementor-icon.eicon-menu-bar {
         font-size: 18px; }
       .elementor-panel .elementor-header-button .elementor-icon:hover {
@@ -2183,9 +2183,9 @@ select {
     text-align: center;
     cursor: pointer;
     color: #a4afb7;
-    -webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s; }
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s; }
     .elementor-panel .elementor-panel-footer-tool #elementor-panel-saver-button-update {
       border-right: 1px solid #2d8739;
       -webkit-border-radius: 3px 0 0 3px;

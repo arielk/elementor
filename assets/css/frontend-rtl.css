@@ -985,9 +985,9 @@
   background-color: #818a91;
   color: #fff;
   text-align: center;
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s; }
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; }
   .elementor-button:hover, .elementor-button:focus, .elementor-button:visited {
     color: #fff;
     opacity: .9; }
@@ -1391,9 +1391,9 @@
 .elementor-icon {
   display: inline-block;
   line-height: 1;
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   color: #818a91;
   font-size: 50px;
   text-align: center; }
@@ -2557,9 +2557,9 @@ button.swiper-pagination-bullet {
 .elementor-lightbox .dialog-lightbox-close-button,
 .elementor-lightbox .elementor-swiper-button {
   color: rgba(238, 238, 238, 0.9);
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   opacity: 1; }
   .elementor-lightbox .dialog-lightbox-close-button:hover,
   .elementor-lightbox .elementor-swiper-button:hover {
