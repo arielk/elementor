@@ -83,16 +83,6 @@ abstract class Document extends Controls_Stack {
 	protected $post;
 
 	/**
-	 * Settings to be Saved
-	 *
-	 * A variable that temporarily stores the new settings while the document is being saved.
-	 *
-	 * @since 3.1.0
-	 * @access protected
-	 */
-	protected $settings_to_be_saved;
-
-	/**
 	 * @since 2.1.0
 	 * @access protected
 	 * @static
@@ -404,6 +394,24 @@ abstract class Document extends Controls_Stack {
 	}
 
 	/**
+	 * Check if the current document is a 'revision'
+	 *
+	 * @return bool
+	 */
+	public function is_revision() {
+		return 'revision' === $this->post->post_type;
+	}
+
+	/**
+	 * Checks if the current document status is 'trash'.
+	 *
+	 * @return bool
+	 */
+	public function is_trash() {
+		return 'trash' === $this->post->post_status;
+	}
+
+	/**
 	 * @since 2.0.0
 	 * @access public
 	 *
@@ -538,10 +546,10 @@ abstract class Document extends Controls_Stack {
 	}
 
 	/**
-	 * @since 2.0.0
+	 * @since 3.1.0
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->register_document_controls();
 		/**
 		 * Register document controls.
@@ -606,12 +614,7 @@ abstract class Document extends Controls_Stack {
 			$this->save_elements( $data['elements'] );
 		}
 
-		// $data['settings'] could be not set, the condition is here to prevent an error when accessed.
-		$this->settings_to_be_saved = isset( $data['settings'] ) ? $data['settings'] : [];
-
 		$this->save_template_type();
-
-		unset( $this->settings_to_be_saved );
 
 		$this->save_version();
 

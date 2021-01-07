@@ -135,6 +135,8 @@ class DB {
 	 * @return array Decoded JSON data from post meta.
 	 */
 	protected function _get_json_meta( $post_id, $key ) {
+		Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function( __METHOD__, '3.1.0' );
+
 		$meta = get_post_meta( $post_id, $key, true );
 
 		if ( is_string( $meta ) && ! empty( $meta ) ) {
@@ -357,27 +359,6 @@ class DB {
 	 */
 	public function is_built_with_elementor( $post_id ) {
 		return ! ! get_post_meta( $post_id, '_elementor_edit_mode', true );
-	}
-
-	/**
-	 * Is Elementor Landing Page.
-	 *
-	 * Check whether the post is an Elementor Landing Page.
-	 *
-	 * @since 3.1.0
-	 * @access public
-	 *
-	 * @param \WP_Post $post Post Object
-	 *
-	 * @return bool Whether the post was built with Elementor.
-	 */
-	public function is_elementor_landing_page( $post ) {
-		// If the post is not a page, save a call to the DB.
-		if ( 'page' !== $post->post_type ) {
-			return false;
-		}
-
-		return 'landing-page' === get_post_meta( $post->ID, '_elementor_template_type', true );
 	}
 
 	/**

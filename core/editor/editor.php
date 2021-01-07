@@ -523,10 +523,6 @@ class Editor {
 
 		$page_title_selector .= ', .elementor-page-title';
 
-		$active_experimental_features = Plugin::$instance->experiments->get_active_features();
-
-		$active_experimental_features = array_fill_keys( array_keys( $active_experimental_features ), true );
-
 		$config = [
 			'initial_document' => $document->get_config(),
 			'version' => ELEMENTOR_VERSION,
@@ -589,7 +585,8 @@ class Editor {
 				'darkModeStylesheetURL' => ELEMENTOR_ASSETS_URL . 'css/editor-dark-mode' . $suffix . '.css',
 				'defaultGenericFonts' => $kits_manager->get_current_settings( 'default_generic_fonts' ),
 			],
-			'experimentalFeatures' => $active_experimental_features,
+			// Empty array for BC to avoid errors.
+			'i18n' => [],
 		];
 
 		if ( ! Utils::has_pro() && current_user_can( 'manage_options' ) ) {
