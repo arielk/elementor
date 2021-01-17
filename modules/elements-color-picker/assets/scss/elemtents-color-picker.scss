@@ -3,21 +3,24 @@
 
 	&-color-picker {
 		display:none;
+		background: $white;
+		padding: 2px;
 		position: absolute;
 		bottom: 5px;
 		#{$end}: 5px;
-		border-radius: 5px;
+		border: 1px solid $editor-lightest;
+		border-radius: 3px;
 		overflow: hidden;
 		box-shadow: 0 0 3px 1px rgba(0,0,0,0.1);
 
 		&__swatch{
-			width: 20px;
-			height: 40px;
+			width: 15px;
+			height: 15px;
 			cursor: pointer;
 			transition: $transition-hover;
 
 			&:hover {
-				width: 40px;
+				width: 30px;
 			}
 		}
 	}
